@@ -1,0 +1,13 @@
+const router = require("express").Router();
+const ReviewController = require("../controllers/review.controller");
+const { protect } = require("../middleware/auth.middleware");
+
+router.get("/", ReviewController.getAll);
+router.get("/facility/:id", ReviewController.getByFacility);
+
+router.use(protect);
+router.post("/", ReviewController.create);
+router.put("/:id", ReviewController.update);
+router.delete("/:id", ReviewController.remove);
+
+module.exports = router;
