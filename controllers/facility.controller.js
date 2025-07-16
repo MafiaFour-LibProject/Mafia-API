@@ -1,4 +1,4 @@
-const Facility = require('../models/facility');
+const Facility = require('../models/Facility');
 
 const addFacility = async (req, res) => {
   try {

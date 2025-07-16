@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Review = require("../models/reviews");
 const User = require("../models/User");
-const Facility = require("../models/facility");
-const Appointment = require("../models/appointment");
+const Facility = require("../models/Facility");
+const Appointment = require("../models/Appointment");
 const Service = require("../models/services");
 
 // Get platform-wide analytics for system admin

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Appointment = require('../models/appointment');
-const Facility = require('../models/facility');
+const Appointment = require('../models/Appointment');
+const Facility = require('../models/Facility');
 const Service = require('../models/services');
 const { sendEmail } = require('../services/email');
 
