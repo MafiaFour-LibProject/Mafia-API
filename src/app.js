@@ -36,6 +36,9 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/reviews', reviewRoutes);
 
+
+
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 4500;
