@@ -1,39 +1,29 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
+// Middleware: Check if user is authenticated
+const auth = (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-const auth = async (req, res, next) => {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
   try {
-      const token = req.header('Authorization')?.replace('Bearer ', '');
-      console.log('Extracted token:', token);
-
-      if (!token) {
-          return res.status(401).json({ message: 'No token provided' });
-      }
-
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log('Decoded token:', decoded);
-
-      const user = await User.findById(decoded.userId).select('-password');
-      console.log('User found:', user);
-
-      if (!user || !user.isActive) {
-          return res.status(401).json({ message: 'Invalid token' });
-      }
-
-      req.user = user;
-      next();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
   } catch (error) {
-      console.error('Token verification error:', error.name, error.message);
-      res.status(401).json({ message: 'Invalid token', error: error.message });
+    return res.status(401).json({ message: "Unauthorized: Invalid token" });
   }
 };
 
+// Middleware: Authorize roles
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ message: 'Access denied' });
+      return res.status(403).json({ message: "Forbidden: Access denied" });
     }
     next();
   };

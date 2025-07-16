@@ -1,7 +1,5 @@
 const Joi = require('joi');
 
-
-
 const validateSignUp = (req, res, next) => {
   console.log('Validating signup data:', req.body);
   const schema = Joi.object({

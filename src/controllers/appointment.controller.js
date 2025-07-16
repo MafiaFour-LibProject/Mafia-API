@@ -791,11 +791,52 @@ const updateAppointmentStatus = async (req, res) => {
   }
 };
 
+
+
+const getAppointmentById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!_validateObjectId(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid appointment ID",
+      });
+    }
+
+    const appointment = await Appointment.findById(id)
+      .populate("user", "name email phone")
+      .populate("facility", "name type location contactInfo")
+      .populate("service", "name category price");
+
+    if (!appointment) {
+      return res.status(404).json({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      data: appointment,
+    });
+  } catch (error) {
+    console.error("Error getting appointment:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error retrieving appointment",
+      error: process.env.NODE_ENV === "development" ? error.message : "Something went wrong",
+    });
+  }
+};
+
+
 module.exports = {
   bookAppointment,
   rescheduleAppointment,
   cancelAppointment,
   getUserAppointments,
   getFacilityAppointments,
-  updateAppointmentStatus
+  updateAppointmentStatus,
+  getAppointmentById, // ✅ Add this
 };

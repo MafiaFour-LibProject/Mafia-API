@@ -6,11 +6,11 @@ require("dotenv").config();
 const authRoutes = require('./routes/auth.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
 const facilityRoutes = require('./routes/facility.routes');
-const serviceRoutes = require('./routes/services.routes');
+const serviceRoutes = require('./routes/service.routes');
 const userRoutes = require('./routes/user.routes');
-const appointmentRoutes = require('./routes/appointments.routes');
+const appointmentRoutes = require('./routes/appointment.routes');
 const blogRoutes = require('./routes/blog.routes');
-const chatbotRoutes = require('./routes/chatbot.routes');
+const chatbotRoutes = require('./routes/chat.routes');
 const reviewRoutes = require('./routes/review.routes');
 
 
@@ -35,9 +35,6 @@ app.use('/api/appointments', appointmentRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/reviews', reviewRoutes);
-
-
-
 
 app.use(errorHandler);
 
