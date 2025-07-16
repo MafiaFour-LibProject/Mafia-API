@@ -1,6 +1,6 @@
-Below are **all the live API endpoint links (fully expanded)**:
+Below are **all the live API endpoint links**:
 
-> ✅ **Base URL**: `https://mafia-api-93cm.onrender.com/api`
+> ✅ **Base URL**: `https://mafia-api-93cm.onrender.com`
 
 ---
 
