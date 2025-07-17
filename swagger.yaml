@@ -8,7 +8,7 @@ info:
     email: support@example.com
 
 servers:
-  - url: http://localhost:4500/api
+  - url: https://mafia-api-93cm.onrender.com
 
 components:
   securitySchemes:
