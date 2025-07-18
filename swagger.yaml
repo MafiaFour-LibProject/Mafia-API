@@ -20,7 +20,7 @@ components:
   schemas:
     User:
       type: object
-      required: [fullName, email, contact, password]
+      required: [fullName, email, contact, password, confirmPassword]
       properties:
         fullName:
           type: string
@@ -29,6 +29,8 @@ components:
         contact:
           type: string
         password:
+          type: string
+        confirmPassword:
           type: string
         role:
           type: string
